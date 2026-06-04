@@ -188,3 +188,7 @@ authorization to test. Unauthorized use is illegal.**
 Falls dieses Projekt nützlich war — Bitcoin-Spenden sind willkommen:
 
 **BTC:** `39vZWmnUwDReQ15BwqQXzyqVQ6U8LardEf`
+
+## Preview
+
+![CLI Preview](docs/screenshots/preview.png)
