@@ -189,6 +189,8 @@ Falls dieses Projekt nützlich war — Bitcoin-Spenden sind willkommen:
 
 **BTC:** `39vZWmnUwDReQ15BwqQXzyqVQ6U8LardEf`
 
+**Kontakt:** [g4me.over.18@gmail.com](mailto:g4me.over.18@gmail.com)
+
 ## Preview
 
 ![CLI Preview](docs/screenshots/preview.png)
