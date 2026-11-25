@@ -1,5 +1,7 @@
 # sqli-hunter
 
+[![CI](https://github.com/G4MEOVER18/sqli-hunter/actions/workflows/python-lint.yml/badge.svg)](https://github.com/G4MEOVER18/sqli-hunter/actions/workflows/python-lint.yml)
+
 **Leichtgewichtiger SQL-Injection-Scanner für autorisierte Penetrationstests**
 
 Autor: [G4MEOVER18](https://github.com/G4MEOVER18) · Lizenz: MIT · Version: 1.0.0
